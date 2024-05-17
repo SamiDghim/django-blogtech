@@ -5,7 +5,6 @@ MVT
  View : business logic
  Template: Presentation layer
 
-
  python3
  pip3
 
@@ -76,12 +75,9 @@ ulrs: routing to our project (list of urls)
 asgi: asynchronus
 settings:  core project configuration
 
+ 9 - create app : python3 manage.py startapp base
 
+10 - inside of base we see:
+ * Views:  similar as controller : call database
+ * Model: configure database
 
-
- - create app : python3 manage.py startapp base
-
-inside of base we see:
- - views:  similar as controller : call database /
- model: configure database
-  
