@@ -75,3 +75,13 @@ wsgi: web server getway interface: the actual server
 ulrs: routing to our project (list of urls)
 asgi: asynchronus
 settings:  core project configuration
+
+
+
+
+ - create app : python3 manage.py startapp base
+
+inside of base we see:
+ - views:  similar as controller : call database /
+ model: configure database
+  
