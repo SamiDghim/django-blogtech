@@ -1,0 +1,77 @@
+Django:
+
+MVT
+ Model : data access layer
+ View : business logic
+ Template: Presentation layer
+
+
+ python3
+ pip3
+
+virtual env:
+
+1 - brew install python@3.9
+2 - python3.9 -m pip install --user virtualenv
+3 - virtualenv base
+4 - source base/bin/activate : this activate virtual env
+
+➜  studybuddy virtualenv base
+created virtual environment CPython3.12.3.final.0-64 in 223ms
+  creator CPython3Posix(dest=/Users/samydghim/workspace/django/studybuddy/base, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, via=copy, app_data_dir=/Users/samydghim/Library/Application Support/virtualenv)
+    added seed packages: pip==24.0
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+
+➜  studybuddy source base/bin/activate
+(base) ➜  studybuddy source base/bin/activate
+(base) ➜  studybuddy deactivate
+➜  studybuddy 
+
+
+5 - install djano:  pip3 install django
+6 - now -> "django-admin" is available
+(env) ➜  studybuddy django-admin       
+
+Type 'django-admin help <subcommand>' for help on a specific subcommand.
+
+Available subcommands:
+
+[django]
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    optimizemigration
+    runserver
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+
+7 - start project:  django-admin startproject studybud
+8 - cd to project: cd studybud
+
+
+project structure:
+
+wsgi: web server getway interface: the actual server
+ulrs: routing to our project (list of urls)
+asgi: asynchronus
+settings:  core project configuration
