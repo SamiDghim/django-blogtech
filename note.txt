@@ -77,7 +77,15 @@ settings:  core project configuration
 
  9 - create app : python3 manage.py startapp base
 
-10 - inside of base we see:
+10 - inside of base folder we see:
  * Views:  similar as controller : call database
  * Model: configure database
 
+11 - views -> extends, block content endblock content
+
+tags:
+{% csrf_token %}
+{% if ..... %} ......{%endif%} 
+
+{{}} -> variable
+{{...}} | -> filter
