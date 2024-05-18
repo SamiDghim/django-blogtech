@@ -144,3 +144,12 @@ if room defined after Topic , change Room to 'Room' -> sinon problem
 ModelFom
 
 class RoomForm(ModelForm): -> this is a class RoomForm inherit from ModelForm
+
+
+
+
+
+docker:
+
+- docker-compose exec web bash
+- docker-compose exec web python manage.py migrate
