@@ -3,6 +3,10 @@ from . import views
 
 
 urlpatterns = [
+    path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
+
+    
     path('', views.home, name="home"), # (direct path, views, name)
     path('room/<str:pk>/' , views.room, name='room'), # we add name to access to url by name
 
