@@ -132,3 +132,10 @@ class Project(models.Model):
 
  queryset = ModelName.objects.method()
 method: all(), filter(attribute=....),exclude(attribute=....), save(), delete()
+
+
+* class Topic -> models.ForeignKey(Room)
+if room defined after Topic , change Room to 'Room' -> sinon problem
+
+
+* if on_delete=models.SET_NULL --> must add null:True
