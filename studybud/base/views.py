@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect 
-from .models import Room
+from  django.db.models import Q
+from .models import Room, Topic
 from .forms import RoomForm
 # Create your views here.
 
@@ -9,9 +10,19 @@ from .forms import RoomForm
 #   {"id":  3, "name": "Frontend developer"}
 # ]
 
+
+
 def home(request):
-  rooms = Room.objects.all()
-  context = { "rooms": rooms }
+  q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+  rooms = Room.objects.filter(
+    Q(topic__name__icontains=q) | # OR statement
+    Q(name__icontains=q) |
+    Q(description__icontains=q)
+    ) # __contains(case sensitive ) ___icontains(not case sensitive)
+
+  topics = Topic.objects.all()
+  context = { "rooms": rooms, "topics": topics }
   return  render(request, 'base/home.html', context)
 
 def room(request,pk):
