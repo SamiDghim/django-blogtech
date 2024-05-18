@@ -100,3 +100,35 @@ tags:
 
 database:
 
+- python3 manage.py migrate -> execute/apply migrations
+
+Python models:
+
+class Project(models.Model):
+  title = models.CharField()
+  description = models.TextField()
+  id = models.UUIDField()
+
+==> each attribute inside this class represent a column in database, calss name -> table name
+
+
+
+* when we add a new model -> generate a migration:
+-->  python3 manage.py makemigrations
+
+
+* execute pending migrations:
+-> python3 manage.py migrate
+
+
+* create superuser:
+- python3 manage.py createsuperuser
+
+*access amdin panel:
+ localhost:8000/admin -> 
+
+
+ Model:
+
+ queryset = ModelName.objects.method()
+method: all(), filter(attribute=....),exclude(attribute=....), save(), delete()
