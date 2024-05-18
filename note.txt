@@ -139,3 +139,8 @@ if room defined after Topic , change Room to 'Room' -> sinon problem
 
 
 * if on_delete=models.SET_NULL --> must add null:True
+
+
+ModelFom
+
+class RoomForm(ModelForm): -> this is a class RoomForm inherit from ModelForm
