@@ -12,7 +12,7 @@ class Room(models.Model):
   updated = models.DateTimeField(auto_now=True) # take snapchot every time we save the room
   created = models.DateTimeField(auto_now_add=True) # take snapchot when we first save/create room
 
-  # 
+  # order rooms fetched from database
   class Meta:
     ordering = ['-updated', '-created'] # the '-': DES , without '-': ASC
   # string representation of the room
