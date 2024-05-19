@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic, Message
-from .forms import RoomForm
+from .forms import RoomForm, UserForm
 from django.contrib.auth import authenticate, login, logout
 
 # rooms = [
@@ -171,3 +171,14 @@ def userProfile(request, pk):
   topics = Topic.objects.all()
   context = {'user': user, 'rooms': rooms, 'room_messages': room_messages, 'topics': topics}
   return render(request, 'base/profile.html', context)
+
+@login_required(login_url='login')
+def updateUser(request):
+  user =request.user
+  form = UserForm(instance=user)
+  if request.method == 'POST':
+    form = UserForm(request.POST, instance=user)
+    if form.is_valid():
+      form.save()
+      return redirect('user-profile', pk=user.id)
+  return render(request, 'base/update-user.html', {'form': form})

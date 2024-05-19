@@ -1,12 +1,12 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
     path('profile/<str:pk>/', views.userProfile, name="user-profile"),
+    path('update-user/', views.updateUser, name="update-user"),
     
     path('', views.home, name="home"), # (direct path, views, name)
     path('room/<str:pk>/' , views.room, name='room'), # we add name to access to url by name
