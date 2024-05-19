@@ -8,7 +8,7 @@ class Room(models.Model):
   topic =  models.ForeignKey('Topic', on_delete=models.SET_NULL, null=True) 
   name = models.CharField(max_length=200)
   description = models.TextField(null=True, blank=True) # null : can save room with empty description (default value is false) / blank : can save form with description empty (default value is false) 
-  # participants
+  participants = models.ManyToManyField(User, related_name='participants', blank=True)
   updated = models.DateTimeField(auto_now=True) # take snapchot every time we save the room
   created = models.DateTimeField(auto_now_add=True) # take snapchot when we first save/create room
 
