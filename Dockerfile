@@ -15,6 +15,7 @@ COPY requirements.txt /app/
 
 # Upgrade pip and install dependencies
 RUN pip install --upgrade pip
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
