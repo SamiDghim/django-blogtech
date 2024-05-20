@@ -14,8 +14,10 @@ WORKDIR /app
 COPY requirements.txt /app/
 
 # Upgrade pip and install dependencies
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --upgrade pip
+
+RUN pip3 install virtualenv
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . /app
