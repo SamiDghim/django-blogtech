@@ -1,0 +1,119 @@
+#!/bin/bash
+# StudyBuddy Development Helper Script
+# Usage: ./bin/dev [command]
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+show_help() {
+    echo -e "${BLUE}StudyBuddy Development Helper${NC}"
+    echo ""
+    echo "Usage: ./bin/dev [command]"
+    echo ""
+    echo "Commands:"
+    echo "  format              Format code with Black and isort"
+    echo "  lint               Run linting checks (flake8, black, isort)"
+    echo "  pylint             Run advanced static analysis"
+    echo "  check              Run all checks (lint + pylint)"
+    echo "  fix                Format code then run lint checks"
+    echo "  shell              Open Django shell_plus"
+    echo "  urls               Show all Django URLs"
+    echo "  migrate            Run Django migrations"
+    echo "  makemigrations     Create new migrations"
+    echo "  collectstatic      Collect static files"
+    echo "  test               Run Django tests"
+    echo "  seed               Seed database with sample data"
+    echo "  rebuild-css        Rebuild Tailwind CSS"
+    echo "  build              Build CSS and JS"
+    echo "  help               Show this help message"
+    echo ""
+}
+
+ensure_container() {
+    if ! docker-compose ps | grep -q "web.*Up"; then
+        echo -e "${YELLOW}⚠️  Starting Django container...${NC}"
+        docker-compose up -d web
+        sleep 2
+    fi
+}
+
+case "${1:-help}" in
+    "format")
+        ./bin/format
+        ;;
+    "lint")
+        ./bin/lint
+        ;;
+    "pylint")
+        ./bin/pylint
+        ;;
+    "check")
+        echo -e "${BLUE}🔍 Running comprehensive code checks...${NC}"
+        ./bin/lint && ./bin/pylint
+        echo -e "${GREEN}🎉 All checks completed!${NC}"
+        ;;
+    "fix")
+        echo -e "${BLUE}🔧 Fixing code formatting and checking...${NC}"
+        ./bin/format && ./bin/lint
+        echo -e "${GREEN}🎉 Code fixed and verified!${NC}"
+        ;;
+    "shell")
+        ensure_container
+        echo -e "${BLUE}🐍 Opening Django shell_plus...${NC}"
+        docker-compose exec web python manage.py shell_plus
+        ;;
+    "urls")
+        ensure_container
+        echo -e "${BLUE}🔗 Showing Django URLs...${NC}"
+        docker-compose exec web python manage.py show_urls
+        ;;
+    "migrate")
+        ensure_container
+        echo -e "${BLUE}🗄️  Running migrations...${NC}"
+        docker-compose exec web python manage.py migrate
+        ;;
+    "makemigrations")
+        ensure_container
+        echo -e "${BLUE}📝 Creating migrations...${NC}"
+        docker-compose exec web python manage.py makemigrations
+        ;;
+    "collectstatic")
+        ensure_container
+        echo -e "${BLUE}📁 Collecting static files...${NC}"
+        docker-compose exec web python manage.py collectstatic --noinput
+        ;;
+    "test")
+        ensure_container
+        echo -e "${BLUE}🧪 Running tests...${NC}"
+        docker-compose exec web python manage.py test
+        ;;
+    "seed")
+        ensure_container
+        echo -e "${BLUE}🌱 Seeding database...${NC}"
+        docker-compose exec web python manage.py seed_db
+        ;;
+    "rebuild-css")
+        ensure_container
+        echo -e "${BLUE}🎨 Rebuilding CSS...${NC}"
+        docker-compose exec web python manage.py rebuild_css
+        ;;
+    "build")
+        echo -e "${BLUE}🏗️  Building assets...${NC}"
+        npm run build
+        ;;
+    "help"|"--help"|"-h")
+        show_help
+        ;;
+    *)
+        echo -e "${RED}❌ Unknown command: $1${NC}"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac

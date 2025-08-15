@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component classes using Tailwind */
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-4 cursor-pointer transition-all duration-300 px-8 py-4 rounded-lg shadow-sm font-medium;
+  }
+  
+  .btn--main {
+    @apply bg-main text-dark hover:opacity-90;
+  }
+  
+  .btn--dark {
+    @apply bg-dark-light text-light hover:opacity-90;
+  }
+  
+  .btn--link {
+    @apply text-main p-0 shadow-none rounded-none hover:underline;
+  }
+  
+  .btn--pill {
+    @apply rounded-full text-sm font-bold py-2 px-10 text-main bg-transparent border-2 border-main;
+  }
+  
+  .avatar {
+    @apply relative inline-block rounded-full border-2 border-main;
+  }
+  
+  .avatar img {
+    @apply block rounded-full object-cover object-center;
+  }
+  
+  .avatar--small img {
+    @apply w-11 h-11;
+  }
+  
+  .avatar--medium img {
+    @apply w-14 h-14;
+  }
+  
+  .avatar--large img {
+    @apply w-32 h-32;
+  }
+  
+  .form-input {
+    @apply bg-transparent border border-dark-light p-4 rounded-md w-full text-light font-medium outline-none focus:border-main;
+  }
+  
+  .form-textarea {
+    @apply bg-transparent border border-dark-light p-4 rounded-md w-full text-light font-medium outline-none focus:border-main h-40 resize-none;
+  }
+  
+  .form-select {
+    @apply bg-transparent border border-dark-light p-4 rounded-md w-full text-gray font-normal outline-none focus:border-main;
+  }
+}

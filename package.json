@@ -1,0 +1,26 @@
+{
+  "name": "studybuddy",
+  "version": "1.0.0",
+  "description": "StudyBuddy - Find study partners around the world!",
+  "scripts": {
+    "build-css": "tailwindcss -i ./static/src/input.css -o ./static/css/main.css --watch",
+    "build-css-prod": "tailwindcss -i ./static/src/input.css -o ./static/css/main.css --minify",
+    "dev": "tailwindcss -i ./static/src/input.css -o ./static/css/main.css --watch",
+    "build-once": "tailwindcss -i ./static/src/input.css -o ./static/css/main.css",
+    "build-js": "esbuild static/js/app.js --bundle --outfile=static/dist/bundle.js --format=esm --platform=browser",
+    "build-js-watch": "esbuild static/js/app.js --bundle --outfile=static/js/bundle.js --format=esm --watch",
+    "build": "npm run build-once && npm run build-js",
+    "dev-all": "concurrently \"npm run dev\" \"npm run build-js-watch\""
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "esbuild": "^0.19.0",
+    "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "@hotwired/turbo": "^8.0.5",
+    "@hotwired/stimulus": "^3.2.2"
+  }
+}

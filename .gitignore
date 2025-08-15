@@ -85,3 +85,12 @@ db.sqlite3
 ## Idea
 .idea
 /setup_env.sh
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated CSS
+static/css/main.css

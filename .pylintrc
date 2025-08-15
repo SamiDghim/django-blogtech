@@ -1,0 +1,19 @@
+[MASTER]
+load-plugins = pylint_django
+django-settings-module = studybud.settings
+
+[FORMAT]
+max-line-length = 88
+
+[MESSAGES CONTROL]
+disable = 
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring  
+    C0116,  # missing-function-docstring
+    R0903,  # too-few-public-methods (common in Django models)
+    R0901,  # too-many-ancestors (common in Django)
+    W0613,  # unused-argument (common in Django views)
+    C0103,  # invalid-name (common for Django field names)
+
+[DJANGO]
+django-settings-module = studybud.settings

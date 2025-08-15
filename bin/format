@@ -1,0 +1,42 @@
+#!/bin/bash
+# StudyBuddy Code Formatting Script
+# Usage: ./bin/format [target]
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Default target
+TARGET=${1:-"base/ studybud/"}
+
+echo -e "${BLUE}🔧 Formatting code...${NC}"
+
+# Check if Docker is running
+if ! docker-compose ps | grep -q "web.*Up"; then
+    echo -e "${YELLOW}⚠️  Starting Django container...${NC}"
+    docker-compose up -d web
+    sleep 2
+fi
+
+echo -e "${BLUE}Running Black formatter...${NC}"
+if docker-compose exec web black $TARGET; then
+    echo -e "${GREEN}✅ Black formatting completed${NC}"
+else
+    echo -e "${RED}❌ Black formatting failed${NC}"
+    exit 1
+fi
+
+echo -e "${BLUE}Running isort import organizer...${NC}"
+if docker-compose exec web isort $TARGET; then
+    echo -e "${GREEN}✅ Import organization completed${NC}"
+else
+    echo -e "${RED}❌ Import organization failed${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}🎉 Code formatting completed successfully!${NC}"

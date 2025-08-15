@@ -1,0 +1,33 @@
+[flake8]
+max-line-length = 88
+exclude = 
+    .git,
+    __pycache__,
+    migrations,
+    .venv,
+    venv,
+    node_modules,
+    static,
+    .dockerignore,
+    Dockerfile,
+    base/lib,
+    base/bin,
+    */site-packages/*,
+    */lib/python*/*
+
+# Django-specific ignores
+ignore = 
+    E203,
+    W503,
+    F401
+    
+# Django extensions
+per-file-ignores =
+    **/settings.py:F405,F403
+    **/urls.py:F401
+    **/admin.py:F401
+    **/models.py:F401
+    **/views.py:F401
+
+# Django-specific settings
+django-settings-module = studybud.settings
